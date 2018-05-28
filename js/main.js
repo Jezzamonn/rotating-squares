@@ -37,6 +37,7 @@ function update() {
 function render() {
 	context.resetTransform();
 	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.translate(canvas.width / 2, canvas.height / 2);
 	context.scale(scale, scale);
 
 	// You can also pass in other stuff here depend on how you want to resize

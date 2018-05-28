@@ -11,18 +11,21 @@ export default class SquareField {
 	}
 
 	render(context, width, height) {
-		let startX = width / 2;
-		while (startX > 0) {
+		// relates to how many circles to draw
+		let drawRadius = Math.sqrt(width * width + height * height) / 2;
+
+		let startX = 0;
+		while (startX > -drawRadius) {
 			startX -= size;
 		}
-		let startY = height / 2;
-		while (startY > 0) {
+		let startY = 0;
+		while (startY > -drawRadius) {
 			startY -= size;
 		}
 
 		context.beginPath();
-		for (let x = startX; x < width; x += size) {
-			for (let y = startY; y < height; y += size) {
+		for (let x = startX; x < drawRadius; x += size) {
+			for (let y = startY; y < drawRadius; y += size) {
 				this.drawSquare(context, x, y, size, 0.5 + 0.5 * Math.sin(this.rotation));
 			}
 		}
