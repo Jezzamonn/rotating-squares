@@ -7,7 +7,7 @@ export default class Controller {
 	}
 
 	update() {
-		this.squareField.rotate(1);
+		this.squareField.rotate(0.01);
 	}
 
 	render(context, width, height) {

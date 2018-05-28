@@ -35,7 +35,9 @@ function update() {
 }
 
 function render() {
+	context.resetTransform();
 	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.scale(scale, scale);
 
 	// You can also pass in other stuff here depend on how you want to resize
 	controller.render(context, canvas.width, canvas.height);
@@ -49,9 +51,6 @@ function handleResize(evt) {
 	// Math.min -> show all (with borders)
 	// There are other options too :)
 	scale = Math.min(canvas.width, canvas.height) / SIZE;
-	// Changing the `0.5` here changes what point it resizes around.
-	centerX = 0.5 * canvas.width / scale;
-	centerY = 0.5 * canvas.height / scale;
 
 	render();
 }
