@@ -38,7 +38,7 @@ function render() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// You can also pass in other stuff here depend on how you want to resize
-	controller.render(context, scale, centerX, centerY);
+	controller.render(context, canvas.width, canvas.height);
 }
 
 function handleResize(evt) {

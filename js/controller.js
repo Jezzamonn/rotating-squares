@@ -1,15 +1,17 @@
+import SquareField from './square-field.js';
+
 export default class Controller {
 
 	constructor() {
-
+		this.squareField = new SquareField();
 	}
 
 	update() {
-		// TODO: Some updating logic
+		this.squareField.rotate(1);
 	}
 
-	render(context, scale, xOffset, yOffset) {
-		// TODO: Some rendering logic
+	render(context, width, height) {
+		this.squareField.render(context, width, height);
 	}
 
 }
