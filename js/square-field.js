@@ -33,7 +33,7 @@ export default class SquareField {
 		for (let x = startX, ix = 0; x < drawRadius; x += size, ix ++) {
 			for (let y = startY, iy = 0; y < drawRadius; y += size, iy ++) {
 				let rotationAmt = 0.5 * this.rotation;//easeInOut(this.rotation, 2);
-				if ((ix + iy) % 2 == 0) {
+				if ((ix + iy) % 2 == 1) {
 					rotationAmt = 1 - rotationAmt;
 				}
 				this.drawSquare(context, x, y, size, rotationAmt);

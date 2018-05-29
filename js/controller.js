@@ -20,7 +20,7 @@ export default class Controller {
 
 		var tweakAnimAmt = sinEaseInOut(this.animAmt, 2);
 		this.squareField.rotation = tweakAnimAmt;
-		this.rotation = -tweakAnimAmt * Math.PI / 4;
+		this.rotation = tweakAnimAmt * Math.PI / 4;
 		this.scale = slurp(1, Math.sqrt(2), tweakAnimAmt);
 	}
 
