@@ -36,7 +36,12 @@ function update() {
 
 function render() {
 	context.resetTransform();
-	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	context.globalAlpha = 0.2;
+	context.fillStyle = 'white';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	context.globalAlpha = 1;
+
 	context.translate(canvas.width / 2, canvas.height / 2);
 	context.scale(scale, scale);
 
