@@ -24,9 +24,13 @@ export default class SquareField {
 		}
 
 		context.beginPath();
-		for (let x = startX; x < drawRadius; x += size) {
-			for (let y = startY; y < drawRadius; y += size) {
-				this.drawSquare(context, x, y, size, 0.5 + 0.5 * Math.sin(this.rotation));
+		for (let x = startX, ix = 0; x < drawRadius; x += size, ix ++) {
+			for (let y = startY, iy = 0; y < drawRadius; y += size, iy ++) {
+				let rotationAmt = Math.sin(this.rotation);
+				if ((ix + iy) % 2 == 0) {
+					rotationAmt = -rotationAmt;
+				}
+				this.drawSquare(context, x, y, size, 0.5 + 0.5 * rotationAmt);
 			}
 		}
 		context.stroke();
