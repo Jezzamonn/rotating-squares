@@ -26,8 +26,8 @@ function init() {
 // TODO: Make tweak this to allow frame skipping for slow computers. Maybe.
 function everyFrame() {
 	clearFrame();
-	for (let i = 0; i < 4; i ++) {
-		update(0.25);
+	for (let i = 0; i < 1; i ++) {
+		update(1);
 		render();
 	}
 	requestAnimationFrame(everyFrame);
