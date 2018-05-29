@@ -1,5 +1,5 @@
 import SquareField from './square-field.js';
-import {slurp} from './easing.js';
+import {sinEaseInOut, slurp} from './easing.js';
 
 
 export default class Controller {
@@ -18,9 +18,10 @@ export default class Controller {
 			this.animAmt --;
 		}
 
-		this.squareField.rotation = this.animAmt;
-		this.rotation = -this.animAmt * Math.PI / 4;
-		this.scale = slurp(1, Math.sqrt(2), this.animAmt);
+		var tweakAnimAmt = sinEaseInOut(this.animAmt, 2);
+		this.squareField.rotation = tweakAnimAmt;
+		this.rotation = -tweakAnimAmt * Math.PI / 4;
+		this.scale = slurp(1, Math.sqrt(2), tweakAnimAmt);
 	}
 
 	render(context, width, height) {
