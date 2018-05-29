@@ -7,9 +7,9 @@ export default class Controller {
 		this.rotateCount = 0;
 	}
 
-	update() {
-		this.squareField.rotate(0.01);
-		this.rotateCount -= 0.005;
+	update(tAmt) {
+		this.squareField.rotate(0.01 * tAmt);
+		this.rotateCount -= 0.005 * tAmt;
 	}
 
 	render(context, width, height) {

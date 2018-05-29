@@ -25,22 +25,29 @@ function init() {
 
 // TODO: Make tweak this to allow frame skipping for slow computers. Maybe.
 function everyFrame() {
-	update();
-	render();
+	clearFrame();
+	for (let i = 0; i < 4; i ++) {
+		update(0.25);
+		render();
+	}
 	requestAnimationFrame(everyFrame);
 }
 
-function update() {
-	controller.update();
+function update(tAmt) {
+	controller.update(tAmt);
+}
+
+function clearFrame() {
+	context.resetTransform();
+
+	// context.globalAlpha = 0.2;
+	// context.fillStyle = 'white';
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	// context.globalAlpha = 1;
 }
 
 function render() {
 	context.resetTransform();
-
-	context.globalAlpha = 0.2;
-	context.fillStyle = 'white';
-	context.fillRect(0, 0, canvas.width, canvas.height);
-	context.globalAlpha = 1;
 
 	context.translate(canvas.width / 2, canvas.height / 2);
 	context.scale(scale, scale);
