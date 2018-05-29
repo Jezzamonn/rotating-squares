@@ -1,3 +1,5 @@
+import {easeInOut} from './easing.js';
+
 const size = 100;
 
 export default class SquareField {
@@ -8,6 +10,10 @@ export default class SquareField {
 
 	rotate(amt) {
 		this.rotation += amt;
+	}
+
+	reset() {
+		this.rotation = 0;
 	}
 
 	render(context, width, height) {
@@ -26,8 +32,7 @@ export default class SquareField {
 		context.beginPath();
 		for (let x = startX, ix = 0; x < drawRadius; x += size, ix ++) {
 			for (let y = startY, iy = 0; y < drawRadius; y += size, iy ++) {
-				let sineAmt = 0.5 + 0.5 * Math.cos(this.rotation);
-				let rotationAmt = 0.5 * sineAmt;
+				let rotationAmt = 0.5 * this.rotation;//easeInOut(this.rotation, 2);
 				if ((ix + iy) % 2 == 0) {
 					rotationAmt = 1 - rotationAmt;
 				}
