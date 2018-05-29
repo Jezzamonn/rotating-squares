@@ -14,11 +14,11 @@ export default class SquareField {
 		// relates to how many circles to draw
 		let drawRadius = Math.sqrt(width * width + height * height) / 2;
 
-		let startX = 0;
+		let startX = size / 2;
 		while (startX > -drawRadius) {
 			startX -= size;
 		}
-		let startY = 0;
+		let startY = size / 2;
 		while (startY > -drawRadius) {
 			startY -= size;
 		}
