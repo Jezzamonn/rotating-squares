@@ -1,6 +1,6 @@
 import {easeInOut} from './easing.js';
 
-const size = 100;
+const size = 90;
 
 export default class SquareField {
 
