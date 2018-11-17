@@ -8,15 +8,15 @@ export default class Controller {
 		this.squareField = new SquareField();
 
 		this.animAmt = 0;
+		this.period = 3;
+		
 		this.rotation = 0;
 		this.scale = 1;
 	}
 
-	update(tAmt) {
-		this.animAmt += 0.005 * tAmt;
-		while (this.animAmt > 1) {
-			this.animAmt --;
-		}
+	update(dt) {
+		this.animAmt += dt / this.period;
+		this.animAmt %= 1;
 
 		var tweakAnimAmt = sinEaseInOut(this.animAmt, 2);
 		this.squareField.rotation = tweakAnimAmt;

@@ -6,14 +6,12 @@ let context = canvas.getContext('2d');
 // Currently assuming square proportions.
 const SIZE = 500;
 
-// Variables relating to resizing.
 let scale = 1;
-let centerX = SIZE / 2;
-let centerY = SIZE / 2;
-
+let lastTime;
 let controller;
 
 function init() {
+	lastTime = Date.now();
 	controller = new Controller();
 
 	handleResize();
@@ -25,45 +23,41 @@ function init() {
 
 // TODO: Make tweak this to allow frame skipping for slow computers. Maybe.
 function everyFrame() {
-	clearFrame();
-	for (let i = 0; i < 1; i ++) {
-		update(1);
-		render();
-	}
+	update();
+	render();
 	requestAnimationFrame(everyFrame);
 }
 
-function update(tAmt) {
-	controller.update(tAmt);
-}
-
-function clearFrame() {
-	context.resetTransform();
-
-	// context.globalAlpha = 0.2;
-	// context.fillStyle = 'white';
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	// context.globalAlpha = 1;
+function update() {
+	let curTime = Date.now();
+	let dt = (curTime - lastTime) / 1000;
+	controller.update(dt);
+	lastTime = curTime;
 }
 
 function render() {
+	// Clear the previous frame
 	context.resetTransform();
+	context.clearRect(0, 0, canvas.width, canvas.height);
 
+	// Set origin to middle and scale canvas
 	context.translate(canvas.width / 2, canvas.height / 2);
 	context.scale(scale, scale);
 
-	// You can also pass in other stuff here depend on how you want to resize
-	controller.render(context, canvas.width, canvas.height);
+	controller.render(context, window.innerWidth, window.innerHeight);
 }
 
 function handleResize(evt) {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	let pixelRatio = window.devicePixelRatio || 1;
+	let width = window.innerWidth;
+	let height = window.innerHeight;
 
-	// Math.max -> no borders (will cut off edges of the thing)
-	// Math.min -> show all (with borders)
-	// There are other options too :)
-	scale = Math.min(canvas.width, canvas.height) / SIZE;
+	canvas.width = width * pixelRatio;
+	canvas.height = height * pixelRatio;
+	canvas.style.width = width + 'px';
+	canvas.style.height = height + 'px';
+
+	scale = pixelRatio;
 
 	render();
 }
